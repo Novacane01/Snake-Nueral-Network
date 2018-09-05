@@ -1,2 +1,5 @@
-﻿  Snek.cpp
-  Snek.vcxproj -> c:\Users\Novacane\source\repos\Snek\Debug\Snek.exe
+﻿  Snake.cpp
+c:\programming\visual studio 2017\projects\snakenn\snake.cpp(12): warning C4018: '<': signed/unsigned mismatch
+c:\programming\visual studio 2017\projects\snakenn\snake.cpp(26): error C2143: syntax error: missing ';' before '}'
+  Snek.cpp
+  Generating Code...

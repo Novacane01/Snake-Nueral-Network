@@ -13,3 +13,4 @@ public:
 private:
 	static sf::RectangleShape body;
 };
+

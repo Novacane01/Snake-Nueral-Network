@@ -1,4 +1,8 @@
+#include "stdafx.h"
 #include "Floor.h"
+
+sf::RectangleShape Floor::body;
+std::vector<sf::CircleShape> Floor::food;
 
 Floor::Floor(sf::Vector2f size) {
 	body.setSize(size);
@@ -7,7 +11,7 @@ Floor::Floor(sf::Vector2f size) {
 }
 
 void Floor::Update() {
-	if (food.size == 0) {
+	if (food.size() == 0) {
 		spawnFood();
 	}
 }

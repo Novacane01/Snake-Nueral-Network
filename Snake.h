@@ -6,11 +6,16 @@ class Snake {
 public:
 	enum class DIRECTION{UP,RIGHT,DOWN,LEFT};
 	Snake();
-	std::vector<sf::RectangleShape> *getSnake();
+	sf::RectangleShape *getSnake();
 	void Update();
 	void Draw(sf::RenderWindow &);
 	void addUnit();
+	void moveUp();
+	void moveRight();
+	void moveDown();
+	void moveLeft();
 private:
-	std::vector<sf::RectangleShape> *body;
+	static std::vector<Snake*> snake_vector;
+	sf::RectangleShape body;
 	float velocity;
 };

@@ -1,42 +1,153 @@
 #include "stdafx.h"
 #include "Snake.h"
 #include "Floor.h"
+#include <cmath>
 
-Snake::Snake() {
+float LinkedSnake::Snake::velocity = 80.f;
+float getDistance(sf::Vector2f, sf::Vector2f);
+
+LinkedSnake::LinkedSnake() {
+	if (head == nullptr&&tail==nullptr) {
+		head = new Snake();
+		head->previous = head;
+		tail = head;
+		head->body.setPosition(1920 / 2, 1080 / 2);
+		head->direction = Snake::DIRECTION::UP;
+	}
+}
+
+LinkedSnake::Snake::Snake() {
 	body.setSize(sf::Vector2f(20, 20));
-	snake_vector.push_back(new Snake());
-	snake_vector[0]->getSnake()->setPosition(1920 / 2, 1080 / 2);
 }
 
-void Snake::Draw(sf::RenderWindow &window) {
-	for (int i = 0;i < snake_vector.size();i++) {
-		window.draw(snake_vector.at(0)->body);
+bool LinkedSnake::isHit(Snake *snake) {
+	if (head->body.getGlobalBounds().intersects(snake->body.getGlobalBounds())) {
+		return true;
+	}
+	return false;
+}
+void LinkedSnake::Draw(sf::RenderWindow &window) const {
+	Snake *current = head;
+	if (current == head) {
+		window.draw(head->body);
+	}
+	while(current!=nullptr) {
+		window.draw(current->body);
+		current = current->next;
 	}
 }
 
-void Snake::Update() {
-	if (snake_vector.at(0)->body.getGlobalBounds().intersects(Floor::food.at(0).getGlobalBounds())) {
+void LinkedSnake::Update(float dt) {
+	if (!Floor::food.empty()&&head->body.getGlobalBounds().intersects(Floor::food.at(0).getGlobalBounds())) {
 		Floor::food.erase(Floor::food.begin());
-		Floor::spawnFood();
+		addUnit();
+	}
+	Snake *current = head;
+	while (current!= nullptr) {
+		if (current != head) {
+			if (isHit(current)) {
+				//return;
+			}
+			for (std::pair<sf::Vector2f, Snake::DIRECTION> x : head->turningPoints) {
+				if (getDistance(x.first, current->body.getPosition()) <=1) {
+					current->direction = x.second;
+					if (current == tail) {
+						head->turningPoints.erase(head->turningPoints.begin());
+					}
+				}
+			}
+		}
+		switch (current->direction) {
+			case Snake::DIRECTION::UP: {
+				current->body.move(0, -Snake::velocity * dt);
+				break;
+			}
+			case Snake::DIRECTION::DOWN: {
+				current->body.move(0, Snake::velocity*dt);
+				break;
+			}
+			case Snake::DIRECTION::LEFT: {
+				current->body.move(-Snake::velocity * dt, 0);
+				break;
+			}
+			case Snake::DIRECTION::RIGHT: {
+				current->body.move(Snake::velocity*dt, 0);
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+		current = current->next;
 	}
 }
 
-sf::RectangleShape* Snake::getSnake(){
+sf::RectangleShape* LinkedSnake::Snake::getSnake(){
 	return &body;
 }
 
-void Snake::moveDown() {
-	body.move(0, 1);
+void LinkedSnake::Snake::moveDown() {
+	direction = DIRECTION::DOWN;
+	turningPoints.push_back(std::pair<sf::Vector2f, DIRECTION>(body.getPosition(), direction));
 }
 
-void Snake::moveUp() {
-	body.move(0, -1);
+void LinkedSnake::Snake::moveUp() {
+	direction = DIRECTION::UP;
+	turningPoints.push_back(std::pair<sf::Vector2f, DIRECTION>(body.getPosition(), direction));
+
 }
 
-void Snake::moveLeft() {
-	body.move(-1, 0);
+void LinkedSnake::Snake::moveLeft() {
+	direction = DIRECTION::LEFT;
+	turningPoints.push_back(std::pair<sf::Vector2f, DIRECTION>(body.getPosition(), direction));
+
 }
 
-void Snake::moveRight() {
-	body.move(-1, 0);
+void LinkedSnake::Snake::moveRight() {
+	direction = DIRECTION::RIGHT;
+	turningPoints.push_back(std::pair<sf::Vector2f, DIRECTION>(body.getPosition(), direction));
+
+}
+
+//Adds unit directly behind tail
+void LinkedSnake::addUnit() const {
+	Snake *newUnit = new Snake();
+	newUnit->body.setPosition(tail->body.getPosition());
+	newUnit->direction = tail->direction;
+	switch (newUnit->direction) {
+		case Snake::DIRECTION::UP: {
+				newUnit->body.move(0, 25);
+				break;
+			}
+		case Snake::DIRECTION::DOWN: {
+				newUnit->body.move(0, -25);
+				break;
+			}
+		case Snake::DIRECTION::LEFT: {
+				newUnit->body.move(25, 0);
+				break;
+			}
+		case Snake::DIRECTION::RIGHT: {
+				newUnit->body.move(-25, 0);
+				break;
+			}
+		default: {
+			break;
+		}
+	}
+	tail->next = newUnit;
+	newUnit->previous = tail;
+	tail = newUnit;
+}
+
+LinkedSnake::Snake* LinkedSnake::getHead() const {
+	return head;
+}
+
+LinkedSnake::Snake* LinkedSnake::getTail() const {
+	return tail;
+}
+
+float getDistance(sf::Vector2f p1, sf::Vector2f p2) {
+	return sqrt(pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2));
 }

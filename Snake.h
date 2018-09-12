@@ -1,21 +1,37 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include "SFML\Graphics.hpp"
 
-class Snake {
+class LinkedSnake{
 public:
-	enum class DIRECTION{UP,RIGHT,DOWN,LEFT};
-	Snake();
-	sf::RectangleShape *getSnake();
-	void Update();
-	void Draw(sf::RenderWindow &);
-	void addUnit();
-	void moveUp();
-	void moveRight();
-	void moveDown();
-	void moveLeft();
+	struct Snake {
+	public:
+		enum class DIRECTION { UP, RIGHT, DOWN, LEFT };
+		Snake();
+		Snake &operator = (const Snake& x) {
+			return *this;
+		}
+		sf::RectangleShape *getSnake();
+		void moveUp();
+		void moveRight();
+		void moveDown();
+		void moveLeft();
+		Snake *next = nullptr;
+		Snake *previous = nullptr;
+		sf::RectangleShape body;
+		DIRECTION direction;
+		std::vector<std::pair<sf::Vector2f,DIRECTION>> turningPoints;
+		static float velocity;
+	};
+	LinkedSnake();
+	void Draw(sf::RenderWindow &) const;
+	void Update(float);
+	void addUnit() const;
+	bool isHit(Snake *);
+	Snake* getHead() const;
+	Snake* getTail() const;
 private:
-	static std::vector<Snake*> snake_vector;
-	sf::RectangleShape body;
-	float velocity;
+	Snake * head = nullptr;
+	mutable Snake * tail = nullptr;
 };

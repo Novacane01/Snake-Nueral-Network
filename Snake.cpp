@@ -49,7 +49,7 @@ void LinkedSnake::Update(float dt) {
 				//return;
 			}
 			for (std::pair<sf::Vector2f, Snake::DIRECTION> x : head->turningPoints) {
-				if (getDistance(x.first, current->body.getPosition()) <=1) {
+				if (x.first == current->body.getPosition()) {
 					current->direction = x.second;
 					if (current == tail) {
 						head->turningPoints.erase(head->turningPoints.begin());
@@ -59,19 +59,19 @@ void LinkedSnake::Update(float dt) {
 		}
 		switch (current->direction) {
 			case Snake::DIRECTION::UP: {
-				current->body.move(0, -Snake::velocity * dt);
+				current->body.move(0, -20);
 				break;
 			}
 			case Snake::DIRECTION::DOWN: {
-				current->body.move(0, Snake::velocity*dt);
+				current->body.move(0, 20);
 				break;
 			}
 			case Snake::DIRECTION::LEFT: {
-				current->body.move(-Snake::velocity * dt, 0);
+				current->body.move(-20, 0);
 				break;
 			}
 			case Snake::DIRECTION::RIGHT: {
-				current->body.move(Snake::velocity*dt, 0);
+				current->body.move(20, 0);
 				break;
 			}
 			default: {
@@ -116,19 +116,19 @@ void LinkedSnake::addUnit() const {
 	newUnit->direction = tail->direction;
 	switch (newUnit->direction) {
 		case Snake::DIRECTION::UP: {
-				newUnit->body.move(0, 25);
+				newUnit->body.move(0, 20);
 				break;
 			}
 		case Snake::DIRECTION::DOWN: {
-				newUnit->body.move(0, -25);
+				newUnit->body.move(0, -20);
 				break;
 			}
 		case Snake::DIRECTION::LEFT: {
-				newUnit->body.move(25, 0);
+				newUnit->body.move(20, 0);
 				break;
 			}
 		case Snake::DIRECTION::RIGHT: {
-				newUnit->body.move(-25, 0);
+				newUnit->body.move(-20, 0);
 				break;
 			}
 		default: {

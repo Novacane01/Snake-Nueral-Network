@@ -1,2 +1,3 @@
-﻿  Snake.cpp
+﻿  Snek.cpp
+c:\users\novacane\source\repos\snek\snek\snek.cpp(220): warning C4715: 'getMapValue': not all control paths return a value
   Snek.vcxproj -> C:\Users\Novacane\source\repos\Snek\Debug\Snek.exe

@@ -2,7 +2,7 @@
 #include "Floor.h"
 
 sf::RectangleShape Floor::body;
-std::vector<sf::CircleShape> Floor::food;
+std::vector<sf::RectangleShape> Floor::food;
 
 
 Floor::Floor(sf::Vector2f size) {
@@ -20,8 +20,8 @@ void Floor::Update() {
 
 void Floor::spawnFood() {
 	if (food.empty()) {
-		sf::CircleShape pill(20);
-		pill.setPosition(rand()%1920 - 20, rand()%1080-20);
+		sf::RectangleShape pill(sf::Vector2f(20,20));
+		pill.setPosition((rand()%190)*10, (rand()%106)*10);
 		food.push_back(pill);
 	}
 }
@@ -31,7 +31,7 @@ sf::RectangleShape& Floor::getFloor(){
 }
 
 void Floor::Draw(sf::RenderWindow &window) {
-	for (sf::CircleShape c : food) {
+	for (sf::RectangleShape c : food) {
 		window.draw(c);
 	}
 }

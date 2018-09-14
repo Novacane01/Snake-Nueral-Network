@@ -7,7 +7,7 @@ class Floor {
 public:
 	Floor(sf::Vector2f);
 	static sf::RectangleShape& getFloor();
-	static std::vector<sf::CircleShape> food;
+	static std::vector<sf::RectangleShape> food;
 	static void Update();
 	static void Draw(sf::RenderWindow &);
 	static void spawnFood();

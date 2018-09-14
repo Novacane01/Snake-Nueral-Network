@@ -1,2 +1,4 @@
-﻿  Snake.cpp
+﻿  Floor.cpp
+c:\users\novacane\source\repos\snek\snek\floor.cpp(12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\floor.cpp(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Snek.vcxproj -> C:\Users\Novacane\source\repos\Snek\Debug\Snek.exe

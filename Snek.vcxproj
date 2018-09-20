@@ -153,13 +153,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DNA.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="NueralNetwork.h" />
+    <ClInclude Include="Population.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DNA.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="NueralNetwork.cpp" />
+    <ClCompile Include="Population.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Snek.cpp" />
     <ClCompile Include="stdafx.cpp">

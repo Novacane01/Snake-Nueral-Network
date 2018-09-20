@@ -6,12 +6,14 @@
 class Floor {
 public:
 	Floor(sf::Vector2f);
-	static sf::RectangleShape& getFloor();
-	static std::vector<sf::RectangleShape> food;
-	static void Update();
-	static void Draw(sf::RenderWindow &);
-	static void spawnFood();
+	sf::RectangleShape& getFloor();
+	std::vector<sf::RectangleShape> food;
+	void Update();
+	void Draw(sf::RenderWindow &);
+	void spawnFood();
 private:
-	static sf::RectangleShape body;
+	std::vector<std::vector<sf::RectangleShape>> grid;
+	std::vector<sf::RectangleShape> walls;
+	const sf::Vector2f size;
 };
 

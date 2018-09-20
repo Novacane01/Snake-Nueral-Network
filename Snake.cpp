@@ -3,14 +3,14 @@
 #include "Floor.h"
 #include <cmath>
 
-float LinkedSnake::Snake::velocity = 80.f;
+
 float getDistance(sf::Vector2f, sf::Vector2f);
 
 LinkedSnake::LinkedSnake() {
 	if (snake.empty()) {
-		
 		Snake newUnit;
-		newUnit.body.setPosition(1920 / 2, 1080 / 2);
+		newUnit.body.setPosition(0,0);
+		newUnit.direction = Snake::DIRECTION::RIGHT;
 		snake.push_back(newUnit);
 	}
 }
@@ -31,9 +31,9 @@ void LinkedSnake::Draw(sf::RenderWindow &window) const {
 	}
 }
 
-void LinkedSnake::Update(float dt) {
-	if (!Floor::food.empty()&&snake[0].body.getGlobalBounds().intersects(Floor::food.at(0).getGlobalBounds())) {
-		Floor::food.erase(Floor::food.begin());
+void LinkedSnake::Update(float dt,Floor *floor) {
+	if (!floor->food.empty()&&snake[0].body.getGlobalBounds().intersects(floor->food.at(0).getGlobalBounds())) {
+		floor->food.erase(floor->food.begin());
 		addUnit();
 	}
 	move(snake[0].direction);

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include "Floor.h"
 #include "SFML\Graphics.hpp"
 
 class LinkedSnake{
@@ -17,12 +18,12 @@ public:
 		sf::RectangleShape body;
 		DIRECTION direction = DIRECTION::UP;
 		std::vector<std::pair<sf::Vector2f,DIRECTION>> turningPoints;
-		static float velocity;
+		float velocity;
 		int id=0;
 	};
 	LinkedSnake();
 	void Draw(sf::RenderWindow &) const;
-	void Update(float);
+	void Update(float, Floor *);
 	void addUnit();
 	bool isHit(Snake *);
 	void move(Snake::DIRECTION);

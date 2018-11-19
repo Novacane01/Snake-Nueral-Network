@@ -156,7 +156,7 @@
     <ClInclude Include="DNA.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="NueralNetwork.h" />
+    <ClInclude Include="NeuralNetwork.h" />
     <ClInclude Include="Population.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="stdafx.h" />
@@ -166,10 +166,10 @@
     <ClCompile Include="DNA.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="NueralNetwork.cpp" />
+    <ClCompile Include="NeuralNetwork.cpp" />
     <ClCompile Include="Population.cpp" />
     <ClCompile Include="Snake.cpp" />
-    <ClCompile Include="Snek.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

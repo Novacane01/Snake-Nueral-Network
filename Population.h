@@ -5,15 +5,16 @@
 class Population
 {
 public:
-	Population(int);
-	void feedForward(Matrix *);
-	DNA selectElite();
-	DNA selectParent();
+	Population(int,int,int,const int);
+	DNA *selectElite(std::vector<DNA*>);
+	DNA *selectParent(std::vector<DNA *> );
+	void calcFitness();
+	std::vector<DNA *> population;
+	unsigned generation = 0;
 	~Population();
 private:
+	int il, hl, ol;
 	const int size;
-	std::vector<DNA> population;
-	float bias;
-	float mutationRate;
+	float bias = 0.f;
 };
 

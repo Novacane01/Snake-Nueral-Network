@@ -35,8 +35,10 @@ Matrix Matrix::multiply(Matrix *b) {
 	if (columns == b->rows) {
 		Matrix temp(rows, b->columns);
 		for (int i = 0;i < rows;i++) {
-			for (int j = 0;j < b->columns;j++) {
-				temp.matrix[i][j] = matrix[i][j] * b->matrix[j][i];
+			for (int j = 0;j <columns;j++) {
+				for (int k = 0;k < b->columns;k++) {
+					temp.matrix[i][k] += matrix[i][j] * b->matrix[j][k];
+				}
 			}
 		}
 		return temp;
@@ -60,18 +62,16 @@ void Matrix::transpose() {
 	Matrix temp(rows, columns);
 	for (int i = 0;i < rows;i++) {
 		for (int j = 0;j < columns;j++) {
-			temp.matrix[i][j] = matrix[j][i];
+			temp.matrix[i][j] = matrix[rows-i-1][j];
 		}
 	}
 	this->matrix = temp.matrix;
 }
 
 void Matrix::randomize() {
-	float r;
 	for (unsigned i = 0;i < rows;i++) {
-		r = rand() / RAND_MAX;
 		for (unsigned j = 0;j < columns;j++) {
-			matrix[i][j] = r;
+			matrix[i][j] = (float)rand() / RAND_MAX;;
 		}
 	}
 }
@@ -80,7 +80,7 @@ Matrix Matrix::sigmoid() {
 	Matrix newMatrix(rows, columns);
 	for (int i = 0;i < rows;i++) {
 		for (int j = 0;j < columns;j++) {
-			newMatrix.matrix[i][j] = 1 / (1 + exp(-matrix[i][j]));
+			newMatrix.matrix[i][j] = exp(matrix[i][j]) / (1 + exp(matrix[i][j]));
 		}
 	}
 	return newMatrix;

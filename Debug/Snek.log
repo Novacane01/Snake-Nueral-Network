@@ -1,8 +1,10 @@
-﻿  Snek.cpp
-  Floor.cpp
-c:\users\novacane\source\repos\snek\snek\floor.cpp(4): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-c:\users\novacane\source\repos\snek\snek\floor.cpp(7): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\novacane\source\repos\snek\snek\floor.cpp(12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\novacane\source\repos\snek\snek\floor.cpp(25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  Snake.cpp
+c:\users\novacane\source\repos\snek\snek\snake.cpp(86): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(90): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(94): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(98): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(117): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(126): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(135): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\novacane\source\repos\snek\snek\snake.cpp(144): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
   Snek.vcxproj -> C:\Users\Novacane\source\repos\Snek\Debug\Snek.exe
